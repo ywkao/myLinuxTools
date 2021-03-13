@@ -1,0 +1,90 @@
+# .bashrc
+
+### Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# History search using <UP>/<DOWN>
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+### USED UNDER NTUCMS1 ###
+#source ~/envNTUCMS.sh
+#export LD_LIBRARY_PATH=/afs/cern.ch/cms/slc5_amd64_gcc462/cms/cmssw/CMSSW_5_3_22/external/slc5_amd64_gcc462/bin/root/lib:$HOME/work/MG5_aMC_v2_2_3_slc5/Delphes/workspace
+#cd $HOME/work/MG5_aMC_v2_2_3_slc5/
+
+# User specific aliases and functions
+alias Pixel_xray='ssh -YC pixel_dev@pccmspixel186.cern.ch'
+alias Pixel_cold='ssh -YC pixel_dev@pcpixelcb.cern.ch'
+alias Pixel_tb02='ssh -YC pixel_dev@pcpixeltb02.cern.ch'
+alias NTUCMS='ssh -YC ykao@ntucms1.cern.ch'
+alias Lxplus='ssh -YC ykao@lxplus.cern.ch'
+alias Check='fs lq; df -h /raid1; du -sh /afs/cern.ch/user/y/ykao/work/MG5_aMC_v2_2_3/simulation; du -sh /afs/cern.ch/user/y/ykao/work/MG5_aMC_v2_2_3/simulation/*'
+alias imgcat='/afs/cern.ch/user/y/ykao/work/imgcat/bin/imgcat'
+alias ll='ls -lhrt'
+alias md='ls -d /eos/user/y/ykao/www/plots/'
+alias rl='readlink -f'
+alias fc='cd ~/work/CMSSW_10_6_8/src/flashgg; pwd; echo "$ cmsenv"; cmsenv;'
+alias ws='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/flashgg/; pwd; echo "$ cmsenv"; cmsenv;'
+#alias tp='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/flashgg/; pwd'
+alias tp='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/tprimetH/; pwd; echo "$ cmsenv"; cmsenv;'
+alias np='cd /afs/cern.ch/work/y/ykao/tPrimeExcessHgg/CMSSW_10_6_8/src/ntuple_production; pwd; \
+          echo "Steps to take for ntuple production (submit to HTCondor):"; \
+          echo "0. cmsenv"; \
+          echo "1. voms-proxy-init -voms cms --valid 168:00"; \
+          echo "2. cp /tmp/MYPROXY ~/"; \
+          echo "3. export X509_USER_PROXY=~/MYPROXY"; \
+          echo "4. fggRunJobs.py \${options}"; \
+          echo ""; \
+          echo "$ cmsenv"; cmsenv; \
+          echo "$ voms-proxy-init -voms cms --valid 168:00"; voms-proxy-init -voms cms --valid 168:00; \
+          echo "$ cp /tmp/x509up_u75423 ~/"; cp /tmp/x509up_u75423 ~/; ls -lhrt ~/x509up_u75423; \
+          echo "$ export X509_USER_PROXY=~/x509up_u75423"; export X509_USER_PROXY=~/x509up_u75423; echo ${X509_USER_PROXY}; \
+          echo "$ cat README.md | tail -n3"; cat README.md | tail -n3; \
+         '
+
+function myscp()
+{
+    file=$1
+    scp -rp "${file}" ykao@ntugrid5.phys.ntu.edu.tw:/wk_cms/ykao/tmp/
+    #scp -rp ykao@ntugrid5.phys.ntu.edu.tw:~/${file} .
+}
+
+function update_plots_from_ntugrid5()
+{
+    time scp -p ykao@ntugrid5.phys.ntu.edu.tw:/wk_cms2/ykao/CMSSW_9_4_10/src/tprimetH_ttH/Loopers/Plots/THQHadronicTag*.png "/eos/user/y/ykao/www/tprimetH_THQHadronic/Data_MC_comparison"
+}
+
+function hint()
+{
+    echo ""
+    echo "Useful commands for checking disk"
+    echo "1. fs lq"
+    echo "2. eos root://eosuser.cern.ch quota /eos/cms/store/user/ykao/"
+    echo ""
+    echo "My disk space"
+    echo "1. /eos/cms/store/user/ykao"
+    echo "2. /eos/user/y/ykao/www"
+    echo "3. /eos/user/y/ykao/tPrimeExcessHgg"
+    echo ""
+}
+
+function check_num_files()
+{
+    directory=$1
+    find ${directory} -maxdepth 1 -type d | while read -r dir; do printf "%-20s:\t" "$dir"; find "$dir" -type f | wc -l; done
+}
+
+### USED UNDER LXPLUS ###
+#source ~/work/root/bin/thisroot.sh
+#export LD_LIBRARY_PATH=/afs/cern.ch/user/y/ykao/work/root/lib:$HOME/work/MG5_aMC_v2_2_3/Delphes/workspace
+#cd $HOME/work/MG5_aMC_v2_2_3/
+##clear && echo "ls ~/eos" && ls ~/eos
+##eosmount ~/eos/
+
+#export ROOTSYS=/usr
+#export PATH=$PATH:$ROOTSYS/bin
+#export LD_LIBRARY_PATH=$LS_LIBRARY_PATH:$ROOTSYS/lib
+#export DYLD_LIBRARY_PATH=$DYLS_LIBRARY_PATH:$ROOTSYS/lib
+
