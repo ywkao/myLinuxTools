@@ -1,0 +1,17 @@
+alias Pixel_xray='ssh -YC pixel_dev@pccmspixel186.cern.ch'
+alias Pixel_cold='ssh -YC pixel_dev@pcpixelcb.cern.ch'
+alias Pixel_tb02='ssh -YC pixel_dev@pcpixeltb02.cern.ch'
+alias NTUCMS='ssh -YC ykao@ntucms1.cern.ch'
+alias Lxplus='ssh -YC ykao@lxplus.cern.ch'
+
+alias Check='fs lq; df -h /raid1; du -sh /afs/cern.ch/user/y/ykao/work/MG5_aMC_v2_2_3/simulation; du -sh /afs/cern.ch/user/y/ykao/work/MG5_aMC_v2_2_3/simulation/*'
+alias imgcat='/afs/cern.ch/user/y/ykao/work/imgcat/bin/imgcat'
+alias md='ls -d /eos/user/y/ykao/www/plots/'
+alias rl='readlink -f'
+
+alias to_higgs_combine='cd ~/work/CMSSW_7_1_5/src/HiggsAnalysis/CombinedLimit/data/tutorials/; cmsenv;'
+alias fc='cd ~/work/CMSSW_10_6_8/src/flashgg; pwd; echo "$ cmsenv"; cmsenv;'
+alias ws='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/flashgg/; pwd; echo "$ cmsenv"; cmsenv;'
+#alias tp='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/flashgg/; pwd'
+alias tp='cd ~/work/tPrimeExcessHgg/CMSSW_10_6_8/src/tprimetH/; pwd; echo "$ cmsenv"; cmsenv;'
+alias es='cd /afs/cern.ch/user/y/ykao/work/CMSSW_8_0_8/src/AlignmentTool/ESAlignTool/test; pwd; echo "$ cmsenv"; cmsenv;'
